@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: oppscout
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: CLOCKED_API_KEY
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.9
