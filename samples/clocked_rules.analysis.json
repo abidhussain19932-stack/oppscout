@@ -1,0 +1,374 @@
+{
+  "source_url": "https://clocked.rezolve.ai/build-challenge/rules",
+  "profile": {
+    "country": "India",
+    "team": "solo",
+    "skills": "Python developer (FastAPI, scripting, APIs)",
+    "budget": "does not want to pay entry fees"
+  },
+  "chars": 17077,
+  "guard": {
+    "flagged": false,
+    "probability": 0.00795917148922165,
+    "verdict": "benign",
+    "category": "benign",
+    "severity": "none",
+    "evidence": [],
+    "spans_removed": 0
+  },
+  "pii": {
+    "counts": {
+      "person": 4
+    },
+    "redacted": true
+  },
+  "text": "Skip to content The Clocked Build Challenge runs October 21 to November 10 with $2,000 in prizes. Enter and start building Benchmarks Capabilities Industries Getting started Docs Pricing Challenge Sign in Start free \n CLOCKED BUILD CHALLENGE / OFFICIAL RULES The official rules.\n Read before you enter. \n These rules govern the Clocked Build Challenge, a skill-based contest organized by Rezolve.ai, the company that makes Clocked. By entering you agree to them. No purchase or payment is necessary to enter or win, and spending on Clocked does not affect judging. Published October 19, 2026 ; any later change is dated in the Changes section below.\n 1. The challenge \n Build a new working application that meaningfully integrates at least one Clocked API, submit it on the challenge page , and compete for $2,000 in cash prizes across five awards. The challenge is organized by Rezolve.ai (the “Organizer”, “we”) and hosted at clocked.rezolve.ai/challenge; it is announced on developer communities and social platforms, none of which sponsor, endorse, or administer it. In particular it is not an official DEV challenge, and DEV, LinkedIn, Reddit, and Wise are not involved in running it.\n The challenge page describes the challenge in plain language. If the page, an announcement, and these rules differ, these rules apply.\n 2. Dates \n All times are Eastern Time (New York).\n Milestone Date \n Building period October 21 to November 10, 2026 \n Submission deadline November 10, 2026, 11:59 p.m. Eastern Time \n Judging and People’s Choice voting November 11 to 17, 2026 \n Voting closes November 17, 2026, 11:59 p.m. Eastern Time \n Winners announced November 18, 2026 \n Entries cannot be submitted or changed after the submission deadline; the entry as saved at the deadline is the one judged. The Organizer may extend a deadline by posting the change on the challenge page and in the Changes section below; an extension applies to everyone.\n 3. Who can enter \n You can enter if, at the time you enter, all of the following are true:\n You are at least 18 years old and have reached the age of legal majority where you live.\n You live in an eligible location (section 4).\n You are not an employee, contractor, or officer of Rezolve.ai, a judge, or a member of the immediate family or household of any of them.\n You are not prohibited from receiving payments from a United States business under applicable sanctions or export laws, and you are not on a United States restricted-party list.\n Teams: you may enter alone or as a team of any size. Every team member must meet these requirements, and each must be listed in the entry with a name, an email address, and, where they have one, a GitHub handle. One team member submits the entry from their Clocked account and acts as the point of contact; that person represents that every member agreed to these rules. Each Clocked account holds one entry; a person who takes part in several projects enters each from a different member’s account. Each project is judged on its own.\n 4. Eligible locations \n The challenge is open worldwide, except where it cannot lawfully run or where we cannot pay a prize. You are eligible if you live in a country or territory where all of the following hold:\n Taking part in a skill-based contest with cash prizes is lawful for you, and the contest does not have to be registered, bonded, or approved by a government authority.\n Rezolve.ai can send a business payment to a resident of that location through Wise from the United States, under Wise’s current coverage.\n United States sanctions and export laws permit the payment.\n The challenge is not open to residents of Cuba, Iran, North Korea, Syria, Russia, Belarus, or the Crimea, Donetsk, and Luhansk regions of Ukraine, nor to residents of the province of Quebec, Canada. If a location becomes ineligible during the challenge because of a change in law or in Wise’s coverage, an entrant from that location remains eligible for recognition but may not be able to receive a cash prize; section 9 explains what happens then.\n If you are unsure whether your location is eligible, ask in a comment on the challenge announcement on the Clocked LinkedIn page before the deadline.\n 5. How to enter \n Build a working application. Clocked must play a meaningful role in how it works. You may use other services and APIs alongside Clocked.\n Submit the entry form on the challenge page from a Clocked account before the submission deadline. The form asks for: the project name and an overview (what it does, who it is for, what problem it solves); a demo (a working application link, or a short video of the application in use); a public source repository with setup instructions and its development history; which Clocked endpoints you used and how their outputs affect the application, including, if you used several, how they work together and what each contributes; optionally what you learned; every team member’s name, email address, and GitHub handle; and the award categories you want the project considered for. A public write-up (a README, or a post on DEV, Hashnode, Medium, or your own blog) may be linked from the form; where relevant, explain how the application handles uncertain results, missing information, and failed requests. The saved form is the official entry. It can be edited until the deadline; the latest saved version is judged, and edits after the deadline are not possible.\n Optionally, enter People’s Choice as described in section 8.\n Keep the demo and the repository publicly accessible through the winners’ announcement on November 18, 2026. An entry whose demo or repository cannot be reviewed during judging may be scored on what remains accessible, or set aside.\n There is no entry fee. Creating a Clocked account is free, and the CLOCKEDHACKATHON code (section 10) gives you credits to build with. No post on any platform is required to enter; a LinkedIn post is needed only for People’s Choice.\n 6. What counts as a new project \n The application must be started and developed during the building period. Previously built applications, earlier hackathon entries, and existing products with Clocked added are not eligible, even with substantial changes.\n You may use standard libraries, frameworks, SDKs, generic starter templates, and AI coding tools. The application’s core functionality and its implementation must be created for this challenge.\n Credit third-party code, assets, and contributions, and respect their licenses. Keep the repository’s development history available so judges can see what was built and when.\n Use public, synthetic, or appropriately authorized data. Do not submit or publish personal data of others without authorization, and never publish API keys, credentials, or private information.\n Entries must not be unlawful, infringing, defamatory, hateful, sexually explicit, or harmful, and must not violate Clocked’s terms of service or acceptable use.\n AI-assisted development is welcome. You remain responsible for everything in your submission.\n 7. Judging \n A panel of four judges from Rezolve.ai reviews every eligible entry: <PERSON> (CTO), <PERSON> (CEO), <PERSON> (CRO), and <PERSON> (Head of Applied AI). An entry is considered for the awards it entered for on the entry form (Best Overall App is selected unless the entrant removes it). Each judge scores every entry that entered for Best Overall App out of 100 points on the Best Overall App criteria, and the scores are averaged.\n Criterion Points \n Practical usefulness 25 \n Quality of the core Clocked integration 30 \n Thoughtful use of additional Clocked endpoints 15 \n Implementation and user experience 20 \n Clear explanation and reproducibility 10 \n Total 100 \n For the 15 points for additional Clocked endpoints, judges consider whether those capabilities improve the application’s functionality, reliability, safety, retrieval quality, or overall experience. Unnecessary API calls earn nothing. A strong single-endpoint application can still win Best Overall App.\n Group awards. Three awards each cover a group of three endpoints: Decide, Extract, or Fill; Protect (pii), Guard (injection), or Inspect (script); and Verify (grounding), Compare, or Rerank. An entry is eligible for a group award when it has entered for it and at least one endpoint of the group is a meaningful part of the application. Each judge scores every eligible entry for a group award out of 100 points on the group criteria, and the scores are averaged.\n Criterion Points \n Depth: how the group’s endpoints shape what the application does 40 \n Breadth: endpoints of the group used meaningfully, 10 points each 30 \n Practical usefulness and execution 20 \n Clear explanation and reproducibility 10 \n Total 100 \n Meaningful use means the endpoint’s output changes what the application does or shows; a call whose result is ignored earns nothing. Breadth awards 10 points for each of the group’s three endpoints used meaningfully, so a project that uses all three earns the full 30 and has a clear advantage for that award; a project that uses one endpoint can still win on depth, usefulness, and clarity.\n Best Overall App goes to the highest-scoring eligible entry on the Best Overall App criteria; each group award goes to the highest-scoring eligible entry on the group criteria. A project may receive at most one judged award; where the same project leads two categories, it receives the higher-value award and the other goes to the next eligible project. If scores tie, the judges decide by discussion, giving the most weight to the quality of the Clocked integration.\n Judges may ask a clarifying question by email, using the addresses in the entry, and may run the demo and read the repository. LinkedIn engagement does not affect the judged awards. The judges’ decisions are final.\n 8. People’s Choice \n People’s Choice goes to the eligible entry with the highest qualifying engagement score on its designated LinkedIn post. To enter, publish one public LinkedIn post about your application that includes a demo or video and a link to your entry’s demo or write-up, tags the official Clocked LinkedIn page with an active @mention chosen from LinkedIn’s suggestions (pasting the page’s URL does not count), and includes #ClockedChallenge . Then select People’s Choice on the entry form and add the post’s URL before the submission deadline; adding the URL selects the award, and an entry without a post URL at the deadline is not in the vote. Each project may designate one post, published by an individual entrant or by one team member. People’s Choice is optional and not required for the judged awards.\n Engagement Points \n Reaction, including a like 1 \n Repost 3 \n Comment from a unique person 2 \n All reaction types count the same. Each person may contribute one counted reaction, one repost, and one comment per project; further comments or reposts from the same person earn nothing. Comments must relate to the project or offer meaningful feedback. Engagement by entrants and their team members does not count. Only engagement that the Organizer can verify on the designated original post counts; engagement on other posts, or on copies of a repost, does not.\n Voting runs from November 11 to November 17, 2026, closing at 11:59 p.m. Eastern Time. The Organizer records a baseline of each designated post’s engagement at the start of the window; engagement before that does not earn points. Organic promotion is encouraged. Paid boosting, purchased engagement, bots, engagement exchanges, and coordinated or fake accounts are prohibited. The Organizer may exclude engagement it cannot verify or believes to be manipulated, and may disqualify an entry that breaks these rules. Ties are resolved by the project’s judging score.\n 9. Prizes and payment \n Award Prize \n Best Overall App $600 \n Best Use of Decide, Extract, or Fill $400 \n Best Use of Protect, Guard, or Inspect $400 \n Best Use of Verify, Compare, or Rerank $400 \n People’s Choice $200 \n Total $2,000 \n A project may win one judged award and People’s Choice, for a combined maximum of $800. Prizes are awarded per project; a team shares its prize, and the amount does not grow with team size.\n Prizes are denominated in United States dollars and paid through Wise, subject to Wise’s supported destinations, recipient verification, and the payment documentation the Organizer requests (for example an IRS Form W-9 or W-8). The Organizer pays Wise’s transfer fee; currency conversion, where needed, is at Wise’s rate at the time of payment; any withholding required by law is deducted from the prize. Taxes on a prize are the winner’s responsibility.\n Winners are contacted privately, through the email addresses in their entry, to verify eligibility and arrange payment. Never post payment details in public comments. A winning team must give the Organizer an allocation of its prize agreed by all members before payment is made; the Organizer pays each member’s share separately where Wise allows and is not responsible for disputes between members.\n We aim to issue payment within 10 business days after eligibility is verified and all required payment information is received.\n If a potential winner cannot be reached within 14 days of first contact, does not provide the requested information within 14 days of the request, is found ineligible, or cannot be paid through Wise or another reasonable method, the prize is forfeited and may be awarded to the next eligible project in that category.\n Prizes cannot be transferred or substituted by a winner. The Organizer may substitute a prize of equal or greater value if a prize becomes unavailable.\n 10. Credits and the CLOCKEDHACKATHON code \n A free Clocked account includes 4,000 credits. Entering the code CLOCKEDHACKATHON on the account page adds 16,000 credits, for 20,000 in all, and raises the account’s limit from one to four requests at a time. The code can be redeemed once per account and is valid through November 19, 2026 (UTC). Credits are usable only on the Clocked service under its terms of service, have no cash value, and cannot be transferred or exchanged. Creating more than one account to redeem the code more than once is prohibited and is grounds for disqualification. Additional spending on Clocked is never required and does not affect judging. The Clocked service is provided as it normally operates during the challenge; a service interruption does not extend the deadline unless the Organizer announces an extension.\n 11. Ownership, publicity, and privacy \n You keep ownership of your project and its code. You represent that you have the rights to everything you submit and that the submission does not infringe anyone’s rights.\n By entering, you grant Rezolve.ai a worldwide, royalty-free, non-exclusive license to show, reproduce, and distribute your project name, overview, screenshots, demo video, write-up link, and the names or GitHub handles of the team, in coverage of the challenge and of Clocked, including on the Clocked website, LinkedIn, developer communities, and other channels. Winners agree to be named in the winners’ announcement on the challenge page.\n Personal information you provide is used to run the challenge, verify eligibility, and pay prizes, and is shared with Wise as needed to make a payment. It is handled as described in the Clocked privacy terms.\n 12. Conduct, changes, and disqualification \n The Organizer may disqualify an entry or entrant for breaking these rules, for providing false information, for interfering with the challenge or with other entrants, for abusive behavior toward entrants, judges, or organizers, or for attempting to manipulate judging or People’s Choice.\n If fraud, technical failure, or any other cause beyond the Organizer’s reasonable control compromises the integrity or proper running of the challenge, the Organizer may suspend, modify, or cancel it, and may award prizes among the eligible entries received before the change.\n The Organizer may correct an error in these rules or the announcement, and may clarify them in response to questions. Changes are posted in the Changes section below with the date.\n To the extent permitted by law, entrants release Rezolve.ai, DEV, LinkedIn, Reddit, Wise, and their respective affiliates, officers, employees, and agents from any claim arising from participation in the challenge or from the acceptance or use of a prize.\n Decisions of the Organizer and the judges on all matters relating to the challenge are final.\n 13. Questions and changes \n Questions about the challenge or these rules go in the comments of the challenge announcement on the official Clocked LinkedIn page, where answers are visible to every entrant. A clarification posted there, or a dated note below, is part of these rules.\n Changes: none since publication on October 19, 2026 .\n The challenge page and entry form Read the developer guide \n Find the facts. Make the call.\n Capabilities Industries Pricing Docs \n © 2026 rezolve.ai. Clocked. Security & data · Service information · Changelog",
+  "fields": {
+    "title": {
+      "value": "Clocked Build Challenge",
+      "confidence": 0.9999999979544221,
+      "start": 20,
+      "end": 43,
+      "verified": null
+    },
+    "organizer": {
+      "value": "Rezolve.ai",
+      "confidence": 0.9999999799083925,
+      "start": 388,
+      "end": 398,
+      "verified": null
+    },
+    "prize": {
+      "value": "$2,000",
+      "confidence": 0.9999999977861036,
+      "start": 80,
+      "end": 86,
+      "verified": "supported"
+    },
+    "deadline": {
+      "value": "November 10, 2026, 11:59 p.m. Eastern Time",
+      "confidence": 0.9999999968873889,
+      "start": 1465,
+      "end": 1507,
+      "verified": "supported"
+    },
+    "entry_fee": {
+      "value": "No purchase or payment is necessary to enter or win",
+      "confidence": 0.9999999709871783,
+      "start": 463,
+      "end": 514,
+      "verified": "supported"
+    },
+    "payout_method": {
+      "value": "Wise",
+      "confidence": 0.9999999969205102,
+      "start": 1153,
+      "end": 1157,
+      "verified": "supported"
+    },
+    "team_rule": {
+      "value": "you may enter alone or as a team of any size",
+      "confidence": 0.9999999987525416,
+      "start": 2494,
+      "end": 2538,
+      "verified": "supported"
+    },
+    "eligibility": {
+      "value": [
+        "You are at least 18 years old and have reached the age of legal majority where you live.",
+        "You live in an eligible location (section 4).",
+        "You are not an employee, contractor, or officer of Rezolve.ai, a judge, or a member of the immediate family or household",
+        "You are not prohibited from receiving payments from a United States business under applicable sanctions or export laws,"
+      ],
+      "confidence": 0.9999999591944019,
+      "start": null,
+      "end": null,
+      "verified": null,
+      "items": [
+        {
+          "value": "You are at least 18 years old and have reached the age of legal majority where you live.",
+          "start": 2033,
+          "end": 2121,
+          "confidence": 0.9999999934443635
+        },
+        {
+          "value": "You live in an eligible location (section 4).",
+          "start": 2123,
+          "end": 2168,
+          "confidence": 0.9999999893612227
+        },
+        {
+          "value": "You are not an employee, contractor, or officer of Rezolve.ai, a judge, or a member of the immediate family or household",
+          "start": 2170,
+          "end": 2290,
+          "confidence": 0.9999999591944019
+        },
+        {
+          "value": "You are not prohibited from receiving payments from a United States business under applicable sanctions or export laws,",
+          "start": 2308,
+          "end": 2427,
+          "confidence": 0.9999999922816879
+        }
+      ]
+    },
+    "excluded_regions": {
+      "value": [
+        "Cuba",
+        "Iran",
+        "North Korea",
+        "Syria",
+        "Russia",
+        "Belarus"
+      ],
+      "confidence": 0.9999999902231359,
+      "start": null,
+      "end": null,
+      "verified": "supported",
+      "items": [
+        {
+          "value": "Cuba",
+          "start": 3648,
+          "end": 3652,
+          "confidence": 0.9999999902231359
+        },
+        {
+          "value": "Iran",
+          "start": 3654,
+          "end": 3658,
+          "confidence": 0.9999999954105419
+        },
+        {
+          "value": "North Korea",
+          "start": 3660,
+          "end": 3671,
+          "confidence": 0.9999999928597112
+        },
+        {
+          "value": "Syria",
+          "start": 3673,
+          "end": 3678,
+          "confidence": 0.999999990478397
+        },
+        {
+          "value": "Russia",
+          "start": 3680,
+          "end": 3686,
+          "confidence": 0.999999994304809
+        },
+        {
+          "value": "Belarus",
+          "start": 3688,
+          "end": 3695,
+          "confidence": 0.9999999926694176
+        }
+      ]
+    },
+    "deliverables": {
+      "value": [
+        "Build a new working application that meaningfully integrates at least one Clocked API",
+        "the project name and an overview (what it does, who it is for, what problem it solves)",
+        "a demo (a working application link, or a short video of the application in use)",
+        "a public source repository with setup instructions and its development history"
+      ],
+      "confidence": 0.9999998837699199,
+      "start": null,
+      "end": null,
+      "verified": "supported",
+      "items": [
+        {
+          "value": "Build a new working application that meaningfully integrates at least one Clocked API",
+          "start": 670,
+          "end": 755,
+          "confidence": 0.9999999768280879
+        },
+        {
+          "value": "the project name and an overview (what it does, who it is for, what problem it solves)",
+          "start": 4481,
+          "end": 4567,
+          "confidence": 0.9999998837699199
+        },
+        {
+          "value": "a demo (a working application link, or a short video of the application in use)",
+          "start": 4569,
+          "end": 4648,
+          "confidence": 0.9999999892387762
+        },
+        {
+          "value": "a public source repository with setup instructions and its development history",
+          "start": 4650,
+          "end": 4728,
+          "confidence": 0.9999999898156996
+        }
+      ]
+    }
+  },
+  "decisions": {
+    "free_to_enter": {
+      "type": "noul",
+      "probability": 0.9783,
+      "label": "yes"
+    },
+    "country_eligible": {
+      "type": "choice",
+      "label": "yes",
+      "model_choice": "yes",
+      "confidence": 0.9761,
+      "probabilities": {
+        "yes": 0.984,
+        "no": 0.0101,
+        "not_stated": 0.0059
+      }
+    },
+    "solo_allowed": {
+      "type": "choice",
+      "label": "yes",
+      "model_choice": "yes",
+      "confidence": 0.9872,
+      "probabilities": {
+        "yes": 0.9915,
+        "no": 0.0055,
+        "not_stated": 0.003
+      }
+    },
+    "scam_risk": {
+      "type": "score",
+      "score": 0.0024,
+      "label": "low",
+      "confidence": 0.9977,
+      "probabilities": {
+        "0": 0.9985,
+        "1": 0.0007,
+        "2": 0.0008
+      },
+      "legend": {
+        "0": "Low: named organizer, published rules, no up-front payment",
+        "1": "Medium: some details missing or unusual terms",
+        "2": "High: up-front payment, data harvesting, or unrealistic promises"
+      }
+    },
+    "profile_fit": {
+      "type": "score",
+      "score": 1.9697,
+      "label": "strong",
+      "confidence": 0.9739,
+      "probabilities": {
+        "0": 0.0128,
+        "1": 0.0046,
+        "2": 0.9826
+      },
+      "legend": {
+        "0": "Poor: needs skills or eligibility the entrant lacks",
+        "1": "Partial: possible but not a natural fit",
+        "2": "Strong: a solo Python developer could realistically enter and compete"
+      }
+    }
+  },
+  "summary": [
+    {
+      "field": "prize",
+      "claim": "The prize is $2,000.",
+      "verdict": "supported",
+      "supported": 0.9698,
+      "evidence": null
+    },
+    {
+      "field": "deadline",
+      "claim": "The submission deadline is November 10, 2026, 11:59 p.m. Eastern Time.",
+      "verdict": "supported",
+      "supported": 0.9766,
+      "evidence": null
+    },
+    {
+      "field": "entry_fee",
+      "claim": "Regarding entry cost: No purchase or payment is necessary to enter or win.",
+      "verdict": "supported",
+      "supported": 0.9672,
+      "evidence": null
+    },
+    {
+      "field": "payout_method",
+      "claim": "Winners are paid via Wise.",
+      "verdict": "supported",
+      "supported": 0.9816,
+      "evidence": null
+    },
+    {
+      "field": "team_rule",
+      "claim": "Team rule: you may enter alone or as a team of any size.",
+      "verdict": "supported",
+      "supported": 0.9598,
+      "evidence": null
+    },
+    {
+      "field": "deliverables",
+      "claim": "Entrants must submit Build a new working application that meaningfully integrates at least one Clocked API.",
+      "verdict": "supported",
+      "supported": 0.9606,
+      "evidence": null
+    },
+    {
+      "field": "excluded_regions",
+      "claim": "Residents of Cuba, Iran, North Korea cannot enter.",
+      "verdict": "supported",
+      "supported": 0.9606,
+      "evidence": null
+    }
+  ],
+  "grounding": {
+    "grounded": 0.9663,
+    "verdict": "grounded"
+  },
+  "recommendation": {
+    "verdict": "go",
+    "reasons": [
+      "Free, open to you, low scam risk."
+    ]
+  },
+  "steps": [
+    {
+      "name": "Guard",
+      "endpoint": "injection",
+      "ok": true,
+      "ms": 961,
+      "status": null,
+      "error": null,
+      "note": "no spans removed"
+    },
+    {
+      "name": "Protect",
+      "endpoint": "pii",
+      "ok": true,
+      "ms": 992,
+      "status": null,
+      "error": null,
+      "note": "4 item(s) redacted"
+    },
+    {
+      "name": "Extract",
+      "endpoint": "extract",
+      "ok": true,
+      "ms": 1110,
+      "status": null,
+      "error": null,
+      "note": "10 found, 0 not stated"
+    },
+    {
+      "name": "Decide",
+      "endpoint": "decide",
+      "ok": true,
+      "ms": 1285,
+      "status": null,
+      "error": null,
+      "note": ""
+    },
+    {
+      "name": "Verify",
+      "endpoint": "grounding",
+      "ok": true,
+      "ms": 574,
+      "status": null,
+      "error": null,
+      "note": "7/7 claims supported"
+    }
+  ]
+}

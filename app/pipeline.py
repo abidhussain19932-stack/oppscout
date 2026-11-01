@@ -200,16 +200,21 @@ def overall_verdict(dec: dict[str, Any], guard_flag: bool) -> dict[str, Any]:
         reasons.append("High scam-risk signals.")
     if free == "no":
         reasons.append("Entry appears to cost money.")
+    fit = (dec.get("profile_fit", {}).get("label") or "")
+    if fit.startswith("poor"):
+        reasons.append("Weak fit for your skills.")
+    elif fit.startswith("uncertain"):
+        reasons.append("Skill fit is uncertain.")
     if elig == "no" or scam.startswith("high"):
         return {"verdict": "skip", "reasons": reasons}
     if guard_flag or elig in ("not_stated", "uncertain", None) or free in ("uncertain", "unknown") \
-            or scam.startswith("medium") or scam.startswith("uncertain"):
+            or scam.startswith("medium") or scam.startswith("uncertain") or fit.startswith("poor"):
         if elig in ("not_stated", "uncertain"):
             reasons.append("Country eligibility is not established; read the rules.")
         if free in ("uncertain", "unknown"):
             reasons.append("Entry cost is unclear.")
         return {"verdict": "check", "reasons": reasons or ["Some answers are uncertain."]}
-    return {"verdict": "go", "reasons": reasons or ["Free, open to you, low scam risk."]}
+    return {"verdict": "go", "reasons": ["Free, open to you, low scam risk."] + reasons}
 
 
 def _step(res: dict[str, Any], name: str, note: str = "") -> dict[str, Any]:

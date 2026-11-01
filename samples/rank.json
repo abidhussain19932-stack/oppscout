@@ -1,0 +1,36 @@
+{
+  "ok": true,
+  "results": [
+    {
+      "id": "clocked_rules",
+      "title": "Clocked Build Challenge",
+      "rank": 1,
+      "action": "use",
+      "reason": null,
+      "relevance_score": 0.9894,
+      "document_score": 0.993,
+      "levels": {
+        "answers": 0.9894,
+        "elsewhere": 0.0036,
+        "different_case": 0.0024,
+        "unrelated": 0.0046
+      }
+    },
+    {
+      "id": "elevenlabs_thesearch",
+      "title": "The Search for the World’s Catchiest Ad",
+      "rank": 2,
+      "action": "skip",
+      "reason": "unrelated",
+      "relevance_score": 0.0055,
+      "document_score": 0.0165,
+      "levels": {
+        "answers": 0.0055,
+        "elsewhere": 0.0109,
+        "different_case": 0.1396,
+        "unrelated": 0.8439
+      }
+    }
+  ],
+  "raw_ms": 445
+}
