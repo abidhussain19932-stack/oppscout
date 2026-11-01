@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OppScout — is this contest worth your time?</title>
+<style>
+  :root { --ink:#16181d; --mute:#6b7280; --line:#e5e7eb; --bg:#fafaf9; --card:#fff;
+          --go:#15803d; --check:#b45309; --skip:#b91c1c; --unk:#6b7280; --acc:#2563eb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 20px 60px; }
+  h1 { font-size: 26px; margin: 0; letter-spacing:-.02em }
+  .sub { color: var(--mute); margin: 4px 0 20px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-bottom:14px; }
+  label { font-weight:600; font-size:13px; display:block; margin-bottom:4px }
+  input, textarea { width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:8px; font:inherit; background:#fff }
+  textarea { min-height: 90px; resize: vertical }
+  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap }
+  button { background:var(--ink); color:#fff; border:0; border-radius:8px; padding:9px 16px; font:inherit; font-weight:600; cursor:pointer }
+  button.ghost { background:#fff; color:var(--ink); border:1px solid var(--line) }
+  button:disabled { opacity:.5; cursor:wait }
+  .profile { color:var(--mute); font-size:13px }
+  .pill { display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:600; border:1px solid currentColor }
+  .go{color:var(--go)} .check{color:var(--check)} .skip{color:var(--skip)} .unknown,.uncertain,.unranked{color:var(--unk)}
+  .supported{color:var(--go)} .contradicted{color:var(--skip)} .not_stated,.unchecked{color:var(--check)}
+  .verdict { font-size: 22px; font-weight: 700; text-transform: uppercase }
+  table { width:100%; border-collapse: collapse; font-size:14px }
+  td, th { text-align:left; padding:7px 6px; border-top:1px solid var(--line); vertical-align: top }
+  th { color: var(--mute); font-weight:600; font-size:12px; text-transform: uppercase; letter-spacing:.04em; border-top:0 }
+  .missing { color: var(--mute); font-style: italic }
+  .bar { height:6px; background:#eef0f3; border-radius:3px; overflow:hidden; width:120px; display:inline-block; vertical-align:middle }
+  .bar > i { display:block; height:100% ; background: var(--acc) }
+  .steps { display:flex; gap:8px; flex-wrap:wrap }
+  .step { font-size:12px; border:1px solid var(--line); border-radius:8px; padding:5px 9px; background:#fff }
+  .step.fail { border-color:#fecaca; background:#fef2f2 }
+  .alert { border-left:4px solid var(--skip); background:#fef2f2; padding:10px 12px; border-radius:6px; margin-bottom:10px }
+  .note { border-left:4px solid var(--check); background:#fffbeb; padding:10px 12px; border-radius:6px; margin-bottom:10px }
+  mark { background:#fef08a; padding:0 2px; border-radius:2px }
+  .src { font-size:12px; color:var(--mute); }
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:14px }
+  @media (max-width: 760px){ .grid2 { grid-template-columns: 1fr } }
+  .hidden { display:none }
+  .err { color: var(--skip) }
+  h2 { font-size: 15px; margin: 0 0 10px }
+  small { color: var(--mute) }
+</style>
+</head>
+<body>
+<main>
+  <h1>OppScout</h1>
+  <p class="sub">Paste a contest, bounty or gig. OppScout screens the page, strips personal data, pulls out the facts with their source, checks its own summary, and tells you whether it is worth entering.</p>
+
+  <div class="card">
+    <label for="url">Listing URL</label>
+    <input id="url" placeholder="https://example.com/contest-rules">
+    <div style="height:10px"></div>
+    <label for="text">…or paste the listing text <small>(used instead of the URL when filled)</small></label>
+    <textarea id="text" placeholder="Paste rules, prize, eligibility…"></textarea>
+    <div class="row" style="margin-top:10px">
+      <button id="go">Analyse</button>
+      <button id="rankBtn" class="ghost" disabled>Rank my listings (0)</button>
+      <span class="profile" id="profile"></span>
+    </div>
+    <div id="status" class="src" style="margin-top:8px"></div>
+  </div>
+
+  <div id="ranking" class="card hidden"></div>
+  <div id="result" class="hidden"></div>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = p => p == null ? '—' : Math.round(p * 100) + '%';
+const bar = p => p == null ? '' : `<span class="bar"><i style="width:${Math.round(p*100)}%"></i></span>`;
+const saved = [];
+let profile = null;
+
+fetch('/api/profile').then(r => r.json()).then(p => { profile = p;
+  $('#profile').textContent = 'Profile: ' + Object.values(p).join(' · '); });
+
+function snippet(text, s, e) {
+  if (s == null || e == null || !text) return '';
+  const a = Math.max(0, s - 50), b = Math.min(text.length, e + 50);
+  return `<div class="src">…${esc(text.slice(a, s))}<mark>${esc(text.slice(s, e))}</mark>${esc(text.slice(e, b))}…</div>`;
+}
+
+function renderDecision(name, d) {
+  const titles = { free_to_enter:'Free to enter?', country_eligible:'Can I enter from my country?', solo_allowed:'Solo entry allowed?',
+                   scam_risk:'Scam risk', profile_fit:'Fit for my profile' };
+  let p = d.probability ?? d.confidence;
+  let detail = d.type === 'noul' ? `P(yes) ${pct(d.probability)}` : `confidence ${pct(d.confidence)}`;
+  if (d.type === 'choice' && d.label === 'uncertain') detail += ` · leaning “${esc(d.model_choice)}”`;
+  const cls = String(d.label).startsWith('uncertain') ? 'uncertain' : '';
+  return `<tr><td>${titles[name] || name}</td><td><span class="pill ${cls}">${esc(d.label)}</span></td><td>${bar(p)} <small>${detail}</small></td></tr>`;
+}
+
+function render(r) {
+  const rec = r.recommendation || {verdict:'unknown', reasons:[]};
+  const g = r.guard;
+  const f = r.fields || {};
+  const order = ['title','organizer','prize','deadline','entry_fee','payout_method','team_rule','eligibility','excluded_regions','deliverables'];
+  let h = '';
+  if (g && g.flagged) h += `<div class="alert"><b>Guard: prompt-injection attempt on this page</b> (${esc(g.category)}, ${esc(g.severity)}, ${pct(g.probability)}). ${g.spans_removed} passage(s) were removed before any other step read the page.</div>`;
+  if (!g) h += `<div class="note">Guard could not screen this page. Results below come from unscreened content.</div>`;
+  if (r.pii && !r.pii.redacted) h += `<div class="note">Personal-data redaction failed; nothing was stored, but extracted values may contain personal data.</div>`;
+
+  h += `<div class="card"><div class="row" style="justify-content:space-between">
+        <div><div class="verdict ${rec.verdict}">${esc(rec.verdict)}</div>
+        <div>${(rec.reasons||[]).map(esc).join(' ')}</div></div>
+        <div class="src">${esc(r.source_url || 'pasted text')} · ${r.chars} chars · PII redacted: ${r.pii && r.pii.redacted ? Object.entries(r.pii.counts||{}).map(([k,v])=>k+' '+v).join(', ') || 'none found' : 'no'}</div></div></div>`;
+
+  h += `<div class="grid2"><div class="card"><h2>Decisions <small>(calibrated; 35–65% shown as uncertain)</small></h2><table>`;
+  const ds = r.decisions || {};
+  if (!Object.keys(ds).length) h += `<tr><td class="missing">Decide failed: no probabilities. See steps below.</td></tr>`;
+  for (const k of Object.keys(ds)) h += renderDecision(k, ds[k]);
+  h += `</table></div>`;
+
+  h += `<div class="card"><h2>Verified summary <small>(template sentences, checked claim by claim)</small></h2>`;
+  if (!(r.summary||[]).length) h += `<p class="missing">No facts to summarise.</p>`;
+  for (const s of r.summary || []) h += `<p style="margin:0 0 8px"><span class="pill ${esc(s.verdict)}">${esc(s.verdict)}</span> ${esc(s.claim)} <small>${s.supported!=null?pct(s.supported):''}</small></p>`;
+  if (r.grounding) h += `<small>Overall grounded score ${pct(r.grounding.grounded)} (${esc(r.grounding.verdict)})</small>`;
+  h += `</div></div>`;
+
+  h += `<div class="card"><h2>Extracted facts <small>(verbatim, with source)</small></h2><table><tr><th>Field</th><th>Value</th><th>Check</th></tr>`;
+  for (const k of order) {
+    const v = f[k];
+    let cell;
+    if (!v || v.value == null) cell = `<span class="missing">not stated</span>`;
+    else if (Array.isArray(v.value)) cell = (v.items||[]).map(i => `• ${esc(i.value)}${snippet(r.text, i.start, i.end)}`).join('') || v.value.map(esc).join('<br>');
+    else cell = `${esc(v.value)}${snippet(r.text, v.start, v.end)}`;
+    const ver = v && v.verified ? `<span class="pill ${esc(v.verified)}">${esc(v.verified)}</span>` : (v && v.value!=null ? '<small>—</small>' : '');
+    const conf = v && v.value!=null && v.confidence!=null && v.confidence < 0.6 ? ' <small class="err">low confidence</small>' : '';
+    h += `<tr><td>${k.replace(/_/g,' ')}</td><td>${cell}${conf}</td><td>${ver}</td></tr>`;
+  }
+  h += `</table></div>`;
+
+  h += `<div class="card"><h2>Pipeline</h2><div class="steps">` + (r.steps||[]).map(s =>
+      `<span class="step ${s.ok?'':'fail'}">${s.ok?'✓':'✗'} <b>${esc(s.name)}</b> /${esc(s.endpoint)} ${s.ms!=null?s.ms+'ms':''}${s.note?' · '+esc(s.note):''}${s.error?' · <span class="err">'+esc(s.error)+'</span>':''}</span>`).join('') + `</div></div>`;
+  $('#result').innerHTML = h; $('#result').classList.remove('hidden');
+}
+
+$('#go').onclick = async () => {
+  const url = $('#url').value.trim(), text = $('#text').value.trim();
+  if (!url && !text) { $('#status').innerHTML = '<span class="err">Add a URL or paste text.</span>'; return; }
+  $('#go').disabled = true; $('#status').textContent = 'Screening, redacting, extracting, deciding, verifying…';
+  try {
+    const res = await fetch('/api/analyze', {method:'POST', headers:{'Content-Type':'application/json'},
+                 body: JSON.stringify({url: url || null, text: text || null})});
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || res.statusText);
+    render(data);
+    saved.push({id: 'l' + saved.length, title: (data.fields.title && data.fields.title.value) || url || 'Pasted listing',
+                fields: Object.fromEntries(Object.entries(data.fields).map(([k,v]) => [k, v.value])), text: data.text.slice(0, 3000)});
+    $('#rankBtn').textContent = `Rank my listings (${saved.length})`; $('#rankBtn').disabled = saved.length < 2;
+    const failed = data.steps.filter(s => !s.ok).length;
+    $('#status').textContent = failed ? `${failed} step(s) failed; showing what succeeded.` : 'Done.';
+  } catch (e) { $('#status').innerHTML = `<span class="err">${esc(e.message)}</span>`; }
+  $('#go').disabled = false;
+};
+
+$('#rankBtn').onclick = async () => {
+  $('#rankBtn').disabled = true; $('#status').textContent = 'Ranking listings for your profile…';
+  try {
+    const res = await fetch('/api/rank', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({listings: saved})});
+    const data = await res.json();
+    let h = `<h2>Ranked for you</h2>`;
+    if (!data.ok) h += `<div class="note">Rerank failed (${esc(data.error)}); showing your original order.</div>`;
+    h += `<table><tr><th>#</th><th>Listing</th><th>Action</th><th>Relevance</th></tr>` + data.results.map(x =>
+      `<tr><td>${x.rank}</td><td>${esc(x.title)}</td><td><span class="pill ${x.action==='use'?'go':x.action==='skip'?'skip':'check'}">${esc(x.action)}${x.reason?' · '+esc(x.reason):''}</span></td><td>${bar(x.relevance_score)} <small>${pct(x.relevance_score)}</small></td></tr>`).join('') + `</table>`;
+    $('#ranking').innerHTML = h; $('#ranking').classList.remove('hidden'); $('#status').textContent = 'Ranked.';
+  } catch (e) { $('#status').innerHTML = `<span class="err">${esc(e.message)}</span>`; }
+  $('#rankBtn').disabled = saved.length < 2;
+};
+</script>
+</body>
+</html>
